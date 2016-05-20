@@ -1,1 +1,0 @@
-MainPackage=C:\Users\t-afenay\OneDrive - Microsoft\LampModules\LampModule3\bin\ARM\Release\LampModule3_1.1.0.0_ARM.appx
