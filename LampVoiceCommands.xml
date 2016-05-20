@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="AllJoynLampCommandSet_en-us">
+    <CommandPrefix>Genie </CommandPrefix>
+    <Example> turn off my lamp </Example>
+    <Command Name="ToggleLamp">
+      <Example> turn on my lamp </Example>
+      <ListenFor> [and] {switchVerb} {switchableStateChange} [my] [the] {switchableDevice} </ListenFor>
+      <ListenFor> [and] {switchVerb} [my] [the] {switchableDevice} {switchableStateChange} </ListenFor>
+      <Feedback> OK, I will {switchVerb} {switchableStateChange} your {switchableDevice} </Feedback>
+      <Navigate/>
+    </Command>
+    <Command Name="SwitchHue">
+      <Example> change the color of my light to blue</Example>
+      <ListenFor> [and] {switchVerb} {switchableDevice} to {color} </ListenFor>
+      <ListenFor> [and] {switchVerb} [my] [the] {switchableDevice} to {color} </ListenFor>
+      <ListenFor> [and] {switchVerb} [my] [the] {switchableDevice} {color} </ListenFor>
+      <Feedback> Ok, I will make your light {color} </Feedback>
+      <Navigate/>
+    </Command>
+    <PhraseList Label="switchableStateChange">
+      <Item> on </Item>
+      <Item> off </Item>
+    </PhraseList>
+    <PhraseList Label="switchableDevice">
+      <Item> lamp </Item>
+      <Item> lamps </Item>
+      <Item> bulb </Item>
+      <Item> bulbs </Item>
+      <Item> light </Item>
+      <Item> lights </Item>
+    </PhraseList>
+    <PhraseList Label="switchVerb">
+      <Item> turn </Item>
+      <Item> switch </Item>
+      <Item> change </Item>
+      <Item> set </Item>
+    </PhraseList>
+    <PhraseList Label="color">
+      <Item> blue </Item>
+      <Item> red </Item>
+      <Item> green </Item>
+      <Item> yellow </Item>
+      <Item> purple </Item>
+      <Item> green </Item>
+    </PhraseList>
+
+    <PhraseTopic Label="color" Scenario="search">
+      <Subject> color </Subject>
+    </PhraseTopic>
+  </CommandSet>
+</VoiceCommands>
