@@ -1,0 +1,1 @@
+MainPackage=C:\Users\t-afenay\OneDrive - Microsoft\LampModules\LampModule3\bin\x64\Release\Upload\LampModule3_1.1.0.0_x64.appx

@@ -1,0 +1,310 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	new file:   .vs/LampModule3/v14/.suo
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.dll
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.exp
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.ilk
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.lib
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.pdb
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.pri
+#	new file:   ARM/Debug/org.allseen.LSF.LampState/org.allseen.LSF.LampState.winmd
+#	new file:   ARM/Release/org.allseen.LSF.LampState/org.allseen.LSF.LampState.dll
+#	new file:   ARM/Release/org.allseen.LSF.LampState/org.allseen.LSF.LampState.exp
+#	new file:   ARM/Release/org.allseen.LSF.LampState/org.allseen.LSF.LampState.lib
+#	new file:   ARM/Release/org.allseen.LSF.LampState/org.allseen.LSF.LampState.pdb
+#	new file:   ARM/Release/org.allseen.LSF.LampState/org.allseen.LSF.LampState.pri
+#	new file:   ARM/Release/org.allseen.LSF.LampState/org.allseen.LSF.LampState.winmd
+#	new file:   App.xaml
+#	new file:   App.xaml.cs
+#	new file:   Assets/LockScreenLogo.scale-200.png
+#	new file:   Assets/SplashScreen.scale-200.png
+#	new file:   Assets/Square150x150Logo.scale-200.png
+#	new file:   Assets/Square44x44Logo.scale-200.png
+#	new file:   Assets/Square44x44Logo.targetsize-24_altform-unplated.png
+#	new file:   Assets/StoreLogo.png
+#	new file:   Assets/Wide310x150Logo.scale-200.png
+#	new file:   bin/ARM/Debug/App.xbf
+#	new file:   bin/ARM/Debug/AppxManifest.xml
+#	new file:   bin/ARM/Debug/ClrCompression.dll
+#	new file:   bin/ARM/Debug/Core/AppxManifest.xml
+#	new file:   bin/ARM/Debug/Core/LampModule3.exe
+#	new file:   bin/ARM/Debug/LampModule3.build.appxrecipe
+#	new file:   bin/ARM/Debug/LampModule3.exe
+#	new file:   bin/ARM/Debug/LampModule3.pdb
+#	new file:   bin/ARM/Debug/LampModule3.xr.xml
+#	new file:   bin/ARM/Debug/LampVoiceCommands.xml
+#	new file:   bin/ARM/Debug/MainPage.xbf
+#	new file:   bin/ARM/Debug/Microsoft.CSharp.dll
+#	new file:   bin/ARM/Debug/Microsoft.VisualBasic.dll
+#	new file:   bin/ARM/Debug/Microsoft.Win32.Primitives.dll
+#	new file:   bin/ARM/Debug/System.AppContext.dll
+#	new file:   bin/ARM/Debug/System.Collections.Concurrent.dll
+#	new file:   bin/ARM/Debug/System.Collections.Immutable.dll
+#	new file:   bin/ARM/Debug/System.Collections.NonGeneric.dll
+#	new file:   bin/ARM/Debug/System.Collections.Specialized.dll
+#	new file:   bin/ARM/Debug/System.Collections.dll
+#	new file:   bin/ARM/Debug/System.ComponentModel.Annotations.dll
+#	new file:   bin/ARM/Debug/System.ComponentModel.DataAnnotations.dll
+#	new file:   bin/ARM/Debug/System.ComponentModel.EventBasedAsync.dll
+#	new file:   bin/ARM/Debug/System.ComponentModel.dll
+#	new file:   bin/ARM/Debug/System.Core.dll
+#	new file:   bin/ARM/Debug/System.Data.Common.dll
+#	new file:   bin/ARM/Debug/System.Diagnostics.Contracts.dll
+#	new file:   bin/ARM/Debug/System.Diagnostics.Debug.dll
+#	new file:   bin/ARM/Debug/System.Diagnostics.StackTrace.dll
+#	new file:   bin/ARM/Debug/System.Diagnostics.Tools.dll
+#	new file:   bin/ARM/Debug/System.Diagnostics.Tracing.dll
+#	new file:   bin/ARM/Debug/System.Dynamic.Runtime.dll
+#	new file:   bin/ARM/Debug/System.Globalization.Calendars.dll
+#	new file:   bin/ARM/Debug/System.Globalization.Extensions.dll
+#	new file:   bin/ARM/Debug/System.Globalization.dll
+#	new file:   bin/ARM/Debug/System.IO.Compression.ZipFile.dll
+#	new file:   bin/ARM/Debug/System.IO.Compression.dll
+#	new file:   bin/ARM/Debug/System.IO.FileSystem.Primitives.dll
+#	new file:   bin/ARM/Debug/System.IO.FileSystem.dll
+#	new file:   bin/ARM/Debug/System.IO.IsolatedStorage.dll
+#	new file:   bin/ARM/Debug/System.IO.UnmanagedMemoryStream.dll
+#	new file:   bin/ARM/Debug/System.IO.dll
+#	new file:   bin/ARM/Debug/System.Linq.Expressions.dll
+#	new file:   bin/ARM/Debug/System.Linq.Parallel.dll
+#	new file:   bin/ARM/Debug/System.Linq.Queryable.dll
+#	new file:   bin/ARM/Debug/System.Linq.dll
+#	new file:   bin/ARM/Debug/System.Net.Http.Rtc.dll
+#	new file:   bin/ARM/Debug/System.Net.Http.dll
+#	new file:   bin/ARM/Debug/System.Net.NetworkInformation.dll
+#	new file:   bin/ARM/Debug/System.Net.Primitives.dll
+#	new file:   bin/ARM/Debug/System.Net.Requests.dll
+#	new file:   bin/ARM/Debug/System.Net.Sockets.dll
+#	new file:   bin/ARM/Debug/System.Net.WebHeaderCollection.dll
+#	new file:   bin/ARM/Debug/System.Net.dll
+#	new file:   bin/ARM/Debug/System.Numerics.Vectors.WindowsRuntime.dll
+#	new file:   bin/ARM/Debug/System.Numerics.Vectors.dll
+#	new file:   bin/ARM/Debug/System.Numerics.dll
+#	new file:   bin/ARM/Debug/System.ObjectModel.dll
+#	new file:   bin/ARM/Debug/System.Private.DataContractSerialization.dll
+#	new file:   bin/ARM/Debug/System.Private.Networking.dll
+#	new file:   bin/ARM/Debug/System.Private.ServiceModel.dll
+#	new file:   bin/ARM/Debug/System.Private.Uri.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Context.dll
+#	new file:   bin/ARM/Debug/System.Reflection.DispatchProxy.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Emit.ILGeneration.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Emit.Lightweight.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Emit.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Extensions.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Metadata.dll
+#	new file:   bin/ARM/Debug/System.Reflection.Primitives.dll
+#	new file:   bin/ARM/Debug/System.Reflection.TypeExtensions.dll
+#	new file:   bin/ARM/Debug/System.Reflection.dll
+#	new file:   bin/ARM/Debug/System.Resources.ResourceManager.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Extensions.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Handles.dll
+#	new file:   bin/ARM/Debug/System.Runtime.InteropServices.WindowsRuntime.dll
+#	new file:   bin/ARM/Debug/System.Runtime.InteropServices.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Numerics.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Serialization.Json.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Serialization.Primitives.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Serialization.Xml.dll
+#	new file:   bin/ARM/Debug/System.Runtime.Serialization.dll
+#	new file:   bin/ARM/Debug/System.Runtime.WindowsRuntime.UI.Xaml.dll
+#	new file:   bin/ARM/Debug/System.Runtime.WindowsRuntime.dll
+#	new file:   bin/ARM/Debug/System.Runtime.dll
+#	new file:   bin/ARM/Debug/System.Security.Claims.dll
+#	new file:   bin/ARM/Debug/System.Security.Principal.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.Duplex.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.Http.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.NetTcp.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.Primitives.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.Security.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.Web.dll
+#	new file:   bin/ARM/Debug/System.ServiceModel.dll
+#	new file:   bin/ARM/Debug/System.Text.Encoding.CodePages.dll
+#	new file:   bin/ARM/Debug/System.Text.Encoding.Extensions.dll
+#	new file:   bin/ARM/Debug/System.Text.Encoding.dll
+#	new file:   bin/ARM/Debug/System.Text.RegularExpressions.dll
+#	new file:   bin/ARM/Debug/System.Threading.Overlapped.dll
+#	new file:   bin/ARM/Debug/System.Threading.Tasks.Dataflow.dll
+#	new file:   bin/ARM/Debug/System.Threading.Tasks.Parallel.dll
+#	new file:   bin/ARM/Debug/System.Threading.Tasks.dll
+#	new file:   bin/ARM/Debug/System.Threading.Timer.dll
+#	new file:   bin/ARM/Debug/System.Threading.dll
+#	new file:   bin/ARM/Debug/System.Windows.dll
+#	new file:   bin/ARM/Debug/System.Xml.Linq.dll
+#	new file:   bin/ARM/Debug/System.Xml.ReaderWriter.dll
+#	new file:   bin/ARM/Debug/System.Xml.Serialization.dll
+#	new file:   bin/ARM/Debug/System.Xml.XDocument.dll
+#	new file:   bin/ARM/Debug/System.Xml.XmlDocument.dll
+#	new file:   bin/ARM/Debug/System.Xml.XmlSerializer.dll
+#	new file:   bin/ARM/Debug/System.Xml.dll
+#	new file:   bin/ARM/Debug/System.dll
+#	new file:   bin/ARM/Debug/org.allseen.LSF.LampState.pdb
+#	new file:   bin/ARM/Debug/org.allseen.LSF.LampState.pri
+#	new file:   bin/ARM/Debug/org.allseen.LSF.LampState.winmd
+#	new file:   bin/ARM/Debug/resources.pri
+#	new file:   bin/ARM/Release/App.xbf
+#	new file:   bin/ARM/Release/AppxManifest.xml
+#	new file:   bin/ARM/Release/ClrCompression.dll
+#	new file:   bin/ARM/Release/ilc/Adapters.g.cs
+#	new file:   bin/ARM/Release/ilc/AppxManifest.xml
+#	new file:   bin/ARM/Release/ilc/AssemblyInfo.g.cs
+#	new file:   bin/ARM/Release/ilc/Assets/LockScreenLogo.scale-200.png
+#	new file:   bin/ARM/Release/ilc/Assets/SplashScreen.scale-200.png
+#	new file:   bin/ARM/Release/ilc/Assets/Square150x150Logo.scale-200.png
+#	new file:   bin/ARM/Release/ilc/Assets/Square44x44Logo.scale-200.png
+#	new file:   bin/ARM/Release/ilc/Assets/Square44x44Logo.targetsize-24_altform-unplated.png
+#	new file:   bin/ARM/Release/ilc/Assets/StoreLogo.png
+#
+# Untracked files:
+#	LampHelper.cs
+#	LampModule3.VC.VC.opendb
+#	LampModule3.VC.db
+#	LampModule3.csproj
+#	LampModule3.csproj.user
+#	LampModule3.sln
+#	LampVoiceCommands.xml
+#	MainPage.xaml
+#	MainPage.xaml.cs
+#	Package.appxmanifest
+#	Properties/
+#	VoiceCommands.cs
+#	bin/ARM/Release/LampModule3.build.appxrecipe
+#	bin/ARM/Release/LampModule3.exe
+#	bin/ARM/Release/LampModule3.pdb
+#	bin/ARM/Release/LampModule3.xr.xml
+#	bin/ARM/Release/LampVoiceCommands.xml
+#	bin/ARM/Release/MainPage.xbf
+#	bin/ARM/Release/Microsoft.CSharp.dll
+#	bin/ARM/Release/Microsoft.VisualBasic.dll
+#	bin/ARM/Release/Microsoft.Win32.Primitives.dll
+#	bin/ARM/Release/System.AppContext.dll
+#	bin/ARM/Release/System.Collections.Concurrent.dll
+#	bin/ARM/Release/System.Collections.Immutable.dll
+#	bin/ARM/Release/System.Collections.NonGeneric.dll
+#	bin/ARM/Release/System.Collections.Specialized.dll
+#	bin/ARM/Release/System.Collections.dll
+#	bin/ARM/Release/System.ComponentModel.Annotations.dll
+#	bin/ARM/Release/System.ComponentModel.DataAnnotations.dll
+#	bin/ARM/Release/System.ComponentModel.EventBasedAsync.dll
+#	bin/ARM/Release/System.ComponentModel.dll
+#	bin/ARM/Release/System.Core.dll
+#	bin/ARM/Release/System.Data.Common.dll
+#	bin/ARM/Release/System.Diagnostics.Contracts.dll
+#	bin/ARM/Release/System.Diagnostics.Debug.dll
+#	bin/ARM/Release/System.Diagnostics.StackTrace.dll
+#	bin/ARM/Release/System.Diagnostics.Tools.dll
+#	bin/ARM/Release/System.Diagnostics.Tracing.dll
+#	bin/ARM/Release/System.Dynamic.Runtime.dll
+#	bin/ARM/Release/System.Globalization.Calendars.dll
+#	bin/ARM/Release/System.Globalization.Extensions.dll
+#	bin/ARM/Release/System.Globalization.dll
+#	bin/ARM/Release/System.IO.Compression.ZipFile.dll
+#	bin/ARM/Release/System.IO.Compression.dll
+#	bin/ARM/Release/System.IO.FileSystem.Primitives.dll
+#	bin/ARM/Release/System.IO.FileSystem.dll
+#	bin/ARM/Release/System.IO.IsolatedStorage.dll
+#	bin/ARM/Release/System.IO.UnmanagedMemoryStream.dll
+#	bin/ARM/Release/System.IO.dll
+#	bin/ARM/Release/System.Linq.Expressions.dll
+#	bin/ARM/Release/System.Linq.Parallel.dll
+#	bin/ARM/Release/System.Linq.Queryable.dll
+#	bin/ARM/Release/System.Linq.dll
+#	bin/ARM/Release/System.Net.Http.Rtc.dll
+#	bin/ARM/Release/System.Net.Http.dll
+#	bin/ARM/Release/System.Net.NetworkInformation.dll
+#	bin/ARM/Release/System.Net.Primitives.dll
+#	bin/ARM/Release/System.Net.Requests.dll
+#	bin/ARM/Release/System.Net.Sockets.dll
+#	bin/ARM/Release/System.Net.WebHeaderCollection.dll
+#	bin/ARM/Release/System.Net.dll
+#	bin/ARM/Release/System.Numerics.Vectors.WindowsRuntime.dll
+#	bin/ARM/Release/System.Numerics.Vectors.dll
+#	bin/ARM/Release/System.Numerics.dll
+#	bin/ARM/Release/System.ObjectModel.dll
+#	bin/ARM/Release/System.Private.DataContractSerialization.dll
+#	bin/ARM/Release/System.Private.Networking.dll
+#	bin/ARM/Release/System.Private.ServiceModel.dll
+#	bin/ARM/Release/System.Private.Uri.dll
+#	bin/ARM/Release/System.Reflection.Context.dll
+#	bin/ARM/Release/System.Reflection.DispatchProxy.dll
+#	bin/ARM/Release/System.Reflection.Emit.ILGeneration.dll
+#	bin/ARM/Release/System.Reflection.Emit.dll
+#	bin/ARM/Release/System.Reflection.Extensions.dll
+#	bin/ARM/Release/System.Reflection.Metadata.dll
+#	bin/ARM/Release/System.Reflection.Primitives.dll
+#	bin/ARM/Release/System.Reflection.TypeExtensions.dll
+#	bin/ARM/Release/System.Reflection.dll
+#	bin/ARM/Release/System.Resources.ResourceManager.dll
+#	bin/ARM/Release/System.Runtime.Extensions.dll
+#	bin/ARM/Release/System.Runtime.Handles.dll
+#	bin/ARM/Release/System.Runtime.InteropServices.WindowsRuntime.dll
+#	bin/ARM/Release/System.Runtime.InteropServices.dll
+#	bin/ARM/Release/System.Runtime.Numerics.dll
+#	bin/ARM/Release/System.Runtime.Serialization.Json.dll
+#	bin/ARM/Release/System.Runtime.Serialization.Primitives.dll
+#	bin/ARM/Release/System.Runtime.Serialization.Xml.dll
+#	bin/ARM/Release/System.Runtime.Serialization.dll
+#	bin/ARM/Release/System.Runtime.WindowsRuntime.UI.Xaml.dll
+#	bin/ARM/Release/System.Runtime.WindowsRuntime.dll
+#	bin/ARM/Release/System.Runtime.dll
+#	bin/ARM/Release/System.Security.Claims.dll
+#	bin/ARM/Release/System.Security.Principal.dll
+#	bin/ARM/Release/System.ServiceModel.Duplex.dll
+#	bin/ARM/Release/System.ServiceModel.Http.dll
+#	bin/ARM/Release/System.ServiceModel.NetTcp.dll
+#	bin/ARM/Release/System.ServiceModel.Primitives.dll
+#	bin/ARM/Release/System.ServiceModel.Security.dll
+#	bin/ARM/Release/System.ServiceModel.Web.dll
+#	bin/ARM/Release/System.ServiceModel.dll
+#	bin/ARM/Release/System.Text.Encoding.CodePages.dll
+#	bin/ARM/Release/System.Text.Encoding.Extensions.dll
+#	bin/ARM/Release/System.Text.Encoding.dll
+#	bin/ARM/Release/System.Text.RegularExpressions.dll
+#	bin/ARM/Release/System.Threading.Overlapped.dll
+#	bin/ARM/Release/System.Threading.Tasks.Dataflow.dll
+#	bin/ARM/Release/System.Threading.Tasks.Parallel.dll
+#	bin/ARM/Release/System.Threading.Tasks.dll
+#	bin/ARM/Release/System.Threading.Timer.dll
+#	bin/ARM/Release/System.Threading.dll
+#	bin/ARM/Release/System.Windows.dll
+#	bin/ARM/Release/System.Xml.Linq.dll
+#	bin/ARM/Release/System.Xml.ReaderWriter.dll
+#	bin/ARM/Release/System.Xml.Serialization.dll
+#	bin/ARM/Release/System.Xml.XDocument.dll
+#	bin/ARM/Release/System.Xml.XmlDocument.dll
+#	bin/ARM/Release/System.Xml.XmlSerializer.dll
+#	bin/ARM/Release/System.Xml.dll
+#	bin/ARM/Release/System.dll
+#	bin/ARM/Release/ilc/Assets/Wide310x150Logo.scale-200.png
+#	bin/ARM/Release/ilc/ClrCompression.dll
+#	bin/ARM/Release/ilc/Data.g.cs
+#	bin/ARM/Release/ilc/Helpers.g.cs
+#	bin/ARM/Release/ilc/ImplTypes.g.cs
+#	bin/ARM/Release/ilc/LampModule3.ITFProxy.g.cs
+#	bin/ARM/Release/ilc/LampModule3.dll
+#	bin/ARM/Release/ilc/LampModule3.exe
+#	bin/ARM/Release/ilc/LampModule3.pdb
+#	bin/ARM/Release/ilc/LampModule3.xr.xml
+#	bin/ARM/Release/ilc/LampVoiceCommands.xml
+#	bin/ARM/Release/ilc/PInvoke.g.cs
+#	bin/ARM/Release/ilc/SafeTypes.g.cs
+#	bin/ARM/Release/ilc/SharedStubs.g.cs
+#	bin/ARM/Release/ilc/org.allseen.LSF.LampState.dll
+#	bin/ARM/Release/ilc/org.allseen.LSF.LampState.pdb
+#	bin/ARM/Release/ilc/org.allseen.LSF.LampState.winmd
+#	bin/ARM/Release/ilc/resources.pri
+#	bin/ARM/Release/mscorlib.dll
+#	bin/ARM/Release/org.allseen.LSF.LampState.pdb
+#	bin/ARM/Release/org.allseen.LSF.LampState.pri
+#	bin/ARM/Release/org.allseen.LSF.LampState.winmd
+#	bin/ARM/Release/resources.pri
+#	bin/x64/
+#	ipch/
+#	obj/
+#	org.allseen.LSF.LampState/
+#	project.json
+#	project.lock.json
+#	x64/
+#
+
