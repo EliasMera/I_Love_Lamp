@@ -13,7 +13,7 @@ namespace LampModule3
         public async static void RegisterVoiceCommands()
         {
             StorageFile storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///LampVoiceCommands.xml"));
-            await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+            await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile); 
         }
 
         public static void ProcessVoiceCommand(VoiceCommandActivatedEventArgs eventArgs)

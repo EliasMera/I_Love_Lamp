@@ -67,9 +67,11 @@ namespace LampModule3
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
 
+                int debug_counter = 0;
                 // Register voice commands
                 Task.Run(() =>
                 {
+                    debug_counter++;
                     //VoiceCommands.RegisterVoiceCommands();
                 });
             }

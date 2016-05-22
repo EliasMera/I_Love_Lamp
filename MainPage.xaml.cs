@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Threading;
+using Windows.UI;
+using Windows.Devices.Sensors;
+using Windows.UI.Core;
 
 namespace LampModule3
 {
@@ -13,6 +16,7 @@ namespace LampModule3
         Random rand = new Random();
         private bool isLooping = false; //
         private DispatcherTimer dispatchTimer;
+        private LightSensor lightSensor = LightSensor.GetDefault();
 
         public MainPage()
         {
@@ -30,6 +34,20 @@ namespace LampModule3
             dispatchTimer.Interval = new TimeSpan(0, 0, 1);
             dispatchTimer.Tick += setRandomHue;
         }
+
+        // Initializing light sensor properties and light sensor field
+        private void ScenarioEnable(object sender, RoutedEventArgs e)
+        {
+            if (lightSensor != null)
+            {
+                // Establish the report interval (in miliseconds)
+                lightSensor.ReportInterval = 500;
+
+                // Setting a handler for when a reading changes past the threshold
+                lightSensor.ReadingChanged += new Windows.Foundation.TypedEventHandler<LightSensor, LightSensorReadingChangedEventArgs>(ReadingChanged);
+            }
+        }
+
 
         private async void setRandomHue(object sender, object e)
         {
@@ -58,23 +76,27 @@ namespace LampModule3
             }
         }
 
-        private void SetHue_Clicked(object sender, RoutedEventArgs e)
+        private async void SetHue_Clicked(object sender, RoutedEventArgs e)
         {
+            uint colorInt = (uint)hueSlider.Value;
+
+            // Converts the slider value to a brush from a color (via bitshifting) so we can set the background
+            // of the windows form app
+            var brush = new Windows.UI.Xaml.Media.SolidColorBrush(Color.FromArgb(byte.MaxValue,
+                    (byte)(colorInt >> 16), (byte)(colorInt >> 8), (byte)(colorInt >> 0)));
+
             if (lampFound)
             {
-                /*var slideColor = Color.FromArgb((uint) hueSlider.Value);
-                Windows.UI.Color.FromArgb();
-                var undividedColor = hueSlider.Value;
-                this.Background = Color.FromArgb(undividedColor & 255, )*/
-                lampHelper.SetHueAsync((uint) hueSlider.Value);
+                await lampHelper.SetHueAsync(colorInt);
             }
+            rootLayout.Background = brush;
         }
 
         private void SetSaturation_Clicked(object sender, RoutedEventArgs e)
         {
             if (lampFound)
             {
-                    lampHelper.SetSaturationAsync((uint)saturationSlider.Value);
+                lampHelper.SetSaturationAsync((uint)saturationSlider.Value);
             }
         }
 
@@ -120,7 +142,26 @@ namespace LampModule3
                 }
             }
         }
-    }
+
+        // Changes brightness of the lights when a change in the ambient light sensor past the threshold is detected
+        async private void ReadingChanged(object sender, LightSensorReadingChangedEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if ( ambientToggleSwitch.IsOn)
+                {
+                    LightSensorReading reading = e.Reading;
+
+                     /* TODO:
+                     **Take the light sensor reading
+                     * Calculate some value that would compensate for the current
+                     * ambient light
+                     **Set LIFX brightness value to that brightness
+                     */
+                }
+            });
+        }
+        }
 }
 
 //TODO
