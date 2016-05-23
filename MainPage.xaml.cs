@@ -33,15 +33,18 @@ namespace LampModule3
             dispatchTimer = new DispatcherTimer();
             dispatchTimer.Interval = new TimeSpan(0, 0, 1);
             dispatchTimer.Tick += setRandomHue;
+
+            // Setting up light sensor
+            ScenarioEnable();
         }
 
         // Initializing light sensor properties and light sensor field
-        private void ScenarioEnable(object sender, RoutedEventArgs e)
+        private void ScenarioEnable()
         {
             if (lightSensor != null)
             {
                 // Establish the report interval (in miliseconds)
-                lightSensor.ReportInterval = 500;
+                lightSensor.ReportInterval = 300;
 
                 // Setting a handler for when a reading changes past the threshold
                 lightSensor.ReadingChanged += new Windows.Foundation.TypedEventHandler<LightSensor, LightSensorReadingChangedEventArgs>(ReadingChanged);
@@ -148,16 +151,29 @@ namespace LampModule3
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if ( ambientToggleSwitch.IsOn)
+                if (ambientToggleSwitch.IsOn && lampFound)
                 {
-                    LightSensorReading reading = e.Reading;
 
-                     /* TODO:
-                     **Take the light sensor reading
-                     * Calculate some value that would compensate for the current
-                     * ambient light
-                     **Set LIFX brightness value to that brightness
-                     */
+                    uint LIGHT_CUTOFF = 400;
+                    LightSensorReading reading = e.Reading;
+                    if (reading.IlluminanceInLux > LIGHT_CUTOFF)
+                    {
+                        lampHelper.SetBrightnessAsync(0);
+                    }
+                    else
+                    {
+                        // Get a ratio and scale it to the light bulb's range
+                        double illum_value = ((LIGHT_CUTOFF - reading.IlluminanceInLux) / LIGHT_CUTOFF);
+                        uint rounded_value = (uint) Math.Ceiling(illum_value * uint.MaxValue);
+                        lampHelper.SetBrightnessAsync(rounded_value);
+                    }
+
+                    /* TODO:
+                    **Take the light sensor reading
+                    * Calculate some value that would compensate for the current
+                    * ambient light
+                    **Set LIFX brightness value to that brightness
+                    */
                 }
             });
         }
