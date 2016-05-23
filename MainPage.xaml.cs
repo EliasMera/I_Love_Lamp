@@ -125,7 +125,7 @@ namespace LampModule3
             }
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
             /*isCycling = !isCycling;
             if (isCycling)
@@ -163,7 +163,12 @@ namespace LampModule3
                     else
                     {
                         // Get a ratio and scale it to the light bulb's range
-                        double illum_value = ((LIGHT_CUTOFF - reading.IlluminanceInLux) / LIGHT_CUTOFF);
+                        // light is roughly logarithmic from lumens to human perception of brightness
+                        //double illum_value = 1 - (Math.Log10(reading.IlluminanceInLux) / 5.0);
+
+                        double illum_value = (LIGHT_CUTOFF - reading.IlluminanceInLux) / LIGHT_CUTOFF;
+                        // Round the value to the next highest integer (precision loss is negligible when working
+                        // on the order of 4 billion
                         uint rounded_value = (uint) Math.Ceiling(illum_value * uint.MaxValue);
                         lampHelper.SetBrightnessAsync(rounded_value);
                     }
