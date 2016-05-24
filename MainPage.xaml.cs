@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Threading;
+using Windows.UI;
+using Windows.Devices.Sensors;
+using Windows.UI.Core;
 
 namespace LampModule3
 {
@@ -11,8 +14,9 @@ namespace LampModule3
         private LampHelper lampHelper;
         private bool lampFound = false;
         Random rand = new Random();
-        private bool isLooping = false; //
+        private bool isLooping = false;
         private DispatcherTimer dispatchTimer;
+        private DateTime lastTimeChecked;
 
         public MainPage()
         {
@@ -58,23 +62,27 @@ namespace LampModule3
             }
         }
 
-        private void SetHue_Clicked(object sender, RoutedEventArgs e)
+        private async void SetHue_Clicked(object sender, RoutedEventArgs e)
         {
+            uint colorInt = (uint)hueSlider.Value;
+
+            // Converts the slider value to a brush from a color (via bitshifting) so we can set the background
+            // of the windows form app
+            var brush = new Windows.UI.Xaml.Media.SolidColorBrush(Color.FromArgb(byte.MaxValue,
+                    (byte)(colorInt >> 16), (byte)(colorInt >> 8), (byte)(colorInt >> 0)));
+
             if (lampFound)
             {
-                /*var slideColor = Color.FromArgb((uint) hueSlider.Value);
-                Windows.UI.Color.FromArgb();
-                var undividedColor = hueSlider.Value;
-                this.Background = Color.FromArgb(undividedColor & 255, )*/
-                lampHelper.SetHueAsync((uint) hueSlider.Value);
+                await lampHelper.SetHueAsync(colorInt);
             }
+            rootLayout.Background = brush;
         }
 
         private void SetSaturation_Clicked(object sender, RoutedEventArgs e)
         {
             if (lampFound)
             {
-                    lampHelper.SetSaturationAsync((uint)saturationSlider.Value);
+                lampHelper.SetSaturationAsync((uint)saturationSlider.Value);
             }
         }
 
@@ -88,7 +96,7 @@ namespace LampModule3
 
         private async void GetLampState()
         {
-            if (lampFound)
+            if (lampFound && (DateTime.Now - lastTimeChecked).TotalMilliseconds > 200)
             {
                 // Get the current On/Off state of the lamp.
                 toggleSwitch.IsOn = await lampHelper.GetOnOffAsync();
@@ -97,16 +105,12 @@ namespace LampModule3
                 hueSlider.Value = await lampHelper.GetHueAsync();
                 saturationSlider.Value = await lampHelper.GetSaturationAsync();
                 brightnessSlider.Value = await lampHelper.GetBrightnessAsync();
+                lastTimeChecked = DateTime.Now;
             }
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
-            /*isCycling = !isCycling;
-            if (isCycling)
-            {
-                await cycleAsync();
-            }*/
             if (lampFound)
             {
                 isLooping = !isLooping;
@@ -120,16 +124,10 @@ namespace LampModule3
                 }
             }
         }
+
+        private void ambientToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            lampHelper.setAdaptiveBrightness(ambientToggleSwitch.IsOn);
+        }
     }
 }
-
-//TODO
-/*
- * Blend left
- * Blend right
- * Make color as blend of primary colors
- * Ambient lighting
- * Morse code
- * Machine learning
- * 
- */

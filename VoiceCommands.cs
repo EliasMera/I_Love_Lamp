@@ -13,7 +13,7 @@ namespace LampModule3
         public async static void RegisterVoiceCommands()
         {
             StorageFile storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///LampVoiceCommands.xml"));
-            await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+            await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile); 
         }
 
         public static void ProcessVoiceCommand(VoiceCommandActivatedEventArgs eventArgs)
@@ -61,10 +61,10 @@ namespace LampModule3
             lampHelper.SetOnOffAsync(onStateChangeRequested);
         }
 
-        private static void LampHelper_LampFound_color(object sender, EventArgs e)
+        private static async void LampHelper_LampFound_color(object sender, EventArgs e)
         {
             LampHelper lampHelper = sender as LampHelper;
-            lampHelper.SetHueAsync((uint) color_value);
+            await lampHelper.SetHueAsync(color_value);
         }
     }
 }

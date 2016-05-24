@@ -2,6 +2,9 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Devices.AllJoyn;
+using Windows.Devices.Sensors;
+using Windows.UI.Core;
+using Windows.UI;
 
 namespace LampModule3
 {
@@ -10,6 +13,8 @@ namespace LampModule3
         private AllJoynBusAttachment busAttachment = null;
         private LampStateConsumer consumer = null;
         private string lampDeviceId = "b6afb5592fb6fcb7ab5d589c161168f4";
+        private Boolean setAdaptive = false;
+        private LightSensor lightSensor = LightSensor.GetDefault();
 
         public LampHelper()
         {
@@ -24,6 +29,7 @@ namespace LampModule3
 
             // Start the LampState watcher.
             watcher.Start();
+            setUpLightSensor();
         }
 
         public event EventHandler LampFound;
@@ -182,6 +188,55 @@ namespace LampModule3
         private void Signals_LampStateChangedReceived(LampStateSignals sender, LampStateLampStateChangedReceivedEventArgs args)
         {
             LampStateChanged?.Invoke(this, new EventArgs());
+        }
+
+        public void setAdaptiveBrightness(Boolean isAdaptive)
+        {
+            setAdaptive = isAdaptive;
+        }
+
+        public void setLightSensorInterval(uint ms)
+        {
+            lightSensor.ReportInterval = ms;
+        }
+
+        // Initializing light sensor properties and light sensor field
+        private void setUpLightSensor()
+        {
+            if (lightSensor != null)
+            {
+                // Establish the report interval (in miliseconds)
+                lightSensor.ReportInterval = 300;
+
+                // Setting a handler for when a reading changes past the threshold
+                lightSensor.ReadingChanged += new Windows.Foundation.TypedEventHandler<LightSensor, 
+                    LightSensorReadingChangedEventArgs>(ReadingChanged);
+            }
+        }
+
+        async private void ReadingChanged(LightSensor sender, LightSensorReadingChangedEventArgs args)
+        {
+            if (setAdaptive && consumer != null)
+            {
+                uint LIGHT_CUTOFF = 400;
+                LightSensorReading reading = args.Reading;
+                if (reading.IlluminanceInLux > LIGHT_CUTOFF)
+                {
+                    await consumer.SetBrightnessAsync(0);
+                }
+                else
+                {
+                    // Get a ratio and scale it to the light bulb's range
+                    // light is roughly logarithmic from lumens to human perception of brightness
+                    //double illum_value = 1 - (Math.Log10(reading.IlluminanceInLux) / 5.0);
+
+                    double illum_value = (LIGHT_CUTOFF - reading.IlluminanceInLux) / LIGHT_CUTOFF;
+                    // Round the value to the next highest integer (precision loss is negligible when working
+                    // on the order of 4 billion
+                    uint rounded_value = (uint)Math.Ceiling(illum_value * uint.MaxValue);
+                    await consumer.SetBrightnessAsync(rounded_value);
+                }
+            }
         }
     }
 }

@@ -15,7 +15,14 @@
       <ListenFor> [and] {switchVerb} {switchableDevice} to {color} </ListenFor>
       <ListenFor> [and] {switchVerb} [my] [the] {switchableDevice} to {color} </ListenFor>
       <ListenFor> [and] {switchVerb} [my] [the] {switchableDevice} {color} </ListenFor>
-      <Feedback> Ok, I will make your light {color} </Feedback>
+      <Feedback> I will make your light {color} </Feedback>
+      <Navigate/>
+    </Command>
+    <Command Name="BlendHue">
+      <Example> blend my lights blue </Example>
+      <ListenFor> [and] blend [my] {switchableDevice} [to] {color} </ListenFor>
+      <ListenFor> make [my] {switchableDevice} [all] trippy </ListenFor>
+      <Feedback> I will blend your lights in ways you cannot fathom </Feedback>
       <Navigate/>
     </Command>
     <PhraseList Label="switchableStateChange">
