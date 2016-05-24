@@ -58,7 +58,7 @@ namespace LampModule3
             }
         }
 
-        private void SetHue_Clicked(object sender, RoutedEventArgs e)
+        private async void SetHue_Clicked(object sender, RoutedEventArgs e)
         {
             if (lampFound)
             {
@@ -66,7 +66,7 @@ namespace LampModule3
                 Windows.UI.Color.FromArgb();
                 var undividedColor = hueSlider.Value;
                 this.Background = Color.FromArgb(undividedColor & 255, )*/
-                lampHelper.SetHueAsync((uint) hueSlider.Value);
+                await lampHelper.SetHueAsync((uint) hueSlider.Value);
             }
         }
 
@@ -100,7 +100,7 @@ namespace LampModule3
             }
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
             /*isCycling = !isCycling;
             if (isCycling)
@@ -119,6 +119,11 @@ namespace LampModule3
                     dispatchTimer.Start();
                 }
             }
+        }
+
+        private void Grid_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        {
+
         }
     }
 }

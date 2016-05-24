@@ -47,7 +47,6 @@ namespace LampModule3
                             color_value = 2495806458;
                             break;
                     }
-
                     lampHelper.LampFound += LampHelper_LampFound_color;
                     break;
                 default:
@@ -61,10 +60,10 @@ namespace LampModule3
             lampHelper.SetOnOffAsync(onStateChangeRequested);
         }
 
-        private static void LampHelper_LampFound_color(object sender, EventArgs e)
+        private async static void LampHelper_LampFound_color(object sender, EventArgs e)
         {
             LampHelper lampHelper = sender as LampHelper;
-            lampHelper.SetHueAsync((uint) color_value);
+            await lampHelper.SetHueAsync((uint) color_value);
         }
     }
 }
