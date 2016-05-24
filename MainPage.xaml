@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <ToggleSwitch x:Name="toggleSwitch" Header="Light" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Stretch" Toggled="LampSwitch_Toggled" />
-        <ToggleSwitch x:Name="ambientToggleSwitch" Header="Adaptive Ambient Lighting" HorizontalAlignment="Stretch" Margin="169,10,10,10" VerticalAlignment="Stretch" Toggled="LampSwitch_Toggled" />
+        <ToggleSwitch x:Name="ambientToggleSwitch" Header="Adaptive Ambient Lighting" HorizontalAlignment="Stretch" Margin="169,10,10,10" VerticalAlignment="Stretch" Toggled="ambientToggleSwitch_Toggled"/>
         <Slider Header="Hue" x:Name="hueSlider" Margin="10,10,56,0" VerticalAlignment="Top" Grid.Row="1" Height="70" HorizontalAlignment="Stretch"/>
         <Slider Header="Saturation" x:Name="saturationSlider" Margin="10,10,56,0" VerticalAlignment="Top" Grid.Row="2" Height="75" HorizontalAlignment="Stretch"/>
         <Slider Header="Brightness" x:Name="brightnessSlider" Margin="10,10,56,0" VerticalAlignment="Top" Grid.Row="3" Height="75" HorizontalAlignment="Stretch"/>

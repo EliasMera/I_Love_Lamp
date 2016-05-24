@@ -14,9 +14,9 @@ namespace LampModule3
         private LampHelper lampHelper;
         private bool lampFound = false;
         Random rand = new Random();
-        private bool isLooping = false; //
+        private bool isLooping = false;
         private DispatcherTimer dispatchTimer;
-        private LightSensor lightSensor = LightSensor.GetDefault();
+        private DateTime lastTimeChecked;
 
         public MainPage()
         {
@@ -33,24 +33,7 @@ namespace LampModule3
             dispatchTimer = new DispatcherTimer();
             dispatchTimer.Interval = new TimeSpan(0, 0, 1);
             dispatchTimer.Tick += setRandomHue;
-
-            // Setting up light sensor
-            ScenarioEnable();
         }
-
-        // Initializing light sensor properties and light sensor field
-        private void ScenarioEnable()
-        {
-            if (lightSensor != null)
-            {
-                // Establish the report interval (in miliseconds)
-                lightSensor.ReportInterval = 300;
-
-                // Setting a handler for when a reading changes past the threshold
-                lightSensor.ReadingChanged += new Windows.Foundation.TypedEventHandler<LightSensor, LightSensorReadingChangedEventArgs>(ReadingChanged);
-            }
-        }
-
 
         private async void setRandomHue(object sender, object e)
         {
@@ -113,7 +96,7 @@ namespace LampModule3
 
         private async void GetLampState()
         {
-            if (lampFound)
+            if (lampFound && (DateTime.Now - lastTimeChecked).TotalMilliseconds > 200)
             {
                 // Get the current On/Off state of the lamp.
                 toggleSwitch.IsOn = await lampHelper.GetOnOffAsync();
@@ -122,16 +105,12 @@ namespace LampModule3
                 hueSlider.Value = await lampHelper.GetHueAsync();
                 saturationSlider.Value = await lampHelper.GetSaturationAsync();
                 brightnessSlider.Value = await lampHelper.GetBrightnessAsync();
+                lastTimeChecked = DateTime.Now;
             }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            /*isCycling = !isCycling;
-            if (isCycling)
-            {
-                await cycleAsync();
-            }*/
             if (lampFound)
             {
                 isLooping = !isLooping;
@@ -146,52 +125,9 @@ namespace LampModule3
             }
         }
 
-        // Changes brightness of the lights when a change in the ambient light sensor past the threshold is detected
-        async private void ReadingChanged(object sender, LightSensorReadingChangedEventArgs e)
+        private void ambientToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (ambientToggleSwitch.IsOn && lampFound)
-                {
-
-                    uint LIGHT_CUTOFF = 400;
-                    LightSensorReading reading = e.Reading;
-                    if (reading.IlluminanceInLux > LIGHT_CUTOFF)
-                    {
-                        lampHelper.SetBrightnessAsync(0);
-                    }
-                    else
-                    {
-                        // Get a ratio and scale it to the light bulb's range
-                        // light is roughly logarithmic from lumens to human perception of brightness
-                        //double illum_value = 1 - (Math.Log10(reading.IlluminanceInLux) / 5.0);
-
-                        double illum_value = (LIGHT_CUTOFF - reading.IlluminanceInLux) / LIGHT_CUTOFF;
-                        // Round the value to the next highest integer (precision loss is negligible when working
-                        // on the order of 4 billion
-                        uint rounded_value = (uint) Math.Ceiling(illum_value * uint.MaxValue);
-                        lampHelper.SetBrightnessAsync(rounded_value);
-                    }
-
-                    /* TODO:
-                    **Take the light sensor reading
-                    * Calculate some value that would compensate for the current
-                    * ambient light
-                    **Set LIFX brightness value to that brightness
-                    */
-                }
-            });
+            lampHelper.setAdaptiveBrightness(ambientToggleSwitch.IsOn);
         }
-        }
+    }
 }
-
-//TODO
-/*
- * Blend left
- * Blend right
- * Make color as blend of primary colors
- * Ambient lighting
- * Morse code
- * Machine learning
- * 
- */
