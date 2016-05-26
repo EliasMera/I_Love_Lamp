@@ -3,8 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Devices.AllJoyn;
 using Windows.Devices.Sensors;
-using Windows.UI.Core;
-using Windows.UI;
+using System.Collections.Generic;
 
 namespace LampModule3
 {
@@ -13,8 +12,9 @@ namespace LampModule3
         private AllJoynBusAttachment busAttachment = null;
         private LampStateConsumer consumer = null;
         private string lampDeviceId = "b6afb5592fb6fcb7ab5d589c161168f4";
-        private Boolean setAdaptive = false;
+        private bool setAdaptive = false;
         private LightSensor lightSensor = LightSensor.GetDefault();
+        private List<LampStateConsumer> arrLamp = new List<LampStateConsumer>();
 
         public LampHelper()
         {
@@ -58,14 +58,14 @@ namespace LampModule3
 
         public async void SetOnOffAsync(bool value)
         {
-            if (consumer != null)
+            var length = arrLamp.Count;
+            for(int i = 0; i < length; i++)
             {
-                await consumer.SetOnOffAsync(value);
-            }
-            else
-            {
-                throw new NullReferenceException("No lamp found.");
-            }
+                if (arrLamp[i] != null)
+                   {
+                       await arrLamp[i].SetOnOffAsync(value);
+                   }          
+            }  
         }
 
         public async Task<uint> GetHueAsync()
@@ -91,14 +91,15 @@ namespace LampModule3
 
         public async Task SetHueAsync(uint value)
         {
-            if (consumer != null)
+            var length = arrLamp.Count;
+            for (int i = 0; i < length; i++)
             {
-                await consumer.SetHueAsync(value);                
+                if (arrLamp[i] != null)
+                {
+                    await arrLamp[i].SetHueAsync(value);
+                }
             }
-            else
-            {
-                throw new NullReferenceException("No lamp found.");
-            }
+
         }
 
         public async Task<uint> GetSaturationAsync()
@@ -124,14 +125,15 @@ namespace LampModule3
 
         public async void SetSaturationAsync(uint value)
         {
-            if (consumer != null)
+            var length = arrLamp.Count;
+            for (int i = 0; i < length; i++)
             {
-                await consumer.SetSaturationAsync(value);
+                if (arrLamp[i] != null)
+                {
+                    await arrLamp[i].SetSaturationAsync(value);
+                }
             }
-            else
-            {
-                throw new NullReferenceException("No lamp found.");
-            }
+
         }
 
         public async Task<uint> GetBrightnessAsync()
@@ -157,30 +159,40 @@ namespace LampModule3
 
         public async void SetBrightnessAsync(uint value)
         {
-            if (consumer != null)
+            var length = arrLamp.Count;
+            for (int i = 0; i < length; i++)
             {
-                await consumer.SetBrightnessAsync(value);
+                if (arrLamp[i] != null)
+                {
+                    await arrLamp[i].SetBrightnessAsync(value);
+                }
             }
-            else
-            {
-                throw new NullReferenceException("No lamp found.");
-            }
+
         }
 
         private async void Watcher_Added(LampStateWatcher sender, AllJoynServiceInfo args)
         {
             AllJoynAboutDataView aboutData = await AllJoynAboutDataView.GetDataBySessionPortAsync(args.UniqueName, busAttachment, args.SessionPort);
 
-            if (aboutData != null && !string.IsNullOrWhiteSpace(aboutData.DeviceId) && string.Equals(aboutData.DeviceId, lampDeviceId))
+            if (aboutData != null && !string.IsNullOrWhiteSpace(aboutData.DeviceId))
             {
+                
                 // Join session with the producer of the LampState interface.
                 LampStateJoinSessionResult joinSessionResult = await LampStateConsumer.JoinSessionAsync(args, sender);
 
                 if (joinSessionResult.Status == AllJoynStatus.Ok)
                 {
-                    consumer = joinSessionResult.Consumer;
-                    LampFound?.Invoke(this, new EventArgs());
-                    consumer.Signals.LampStateChangedReceived += Signals_LampStateChangedReceived;
+                    if (string.Equals(aboutData.DeviceId, lampDeviceId))
+                    {
+                        consumer = joinSessionResult.Consumer;
+                        LampFound?.Invoke(this, new EventArgs());
+                        consumer.Signals.LampStateChangedReceived += Signals_LampStateChangedReceived;
+                    }
+                    
+                    if (!arrLamp.Contains(joinSessionResult.Consumer))
+                    {
+                        arrLamp.Add(joinSessionResult.Consumer);
+                    }
                 }
             }
         }
@@ -216,13 +228,17 @@ namespace LampModule3
 
         async private void ReadingChanged(LightSensor sender, LightSensorReadingChangedEventArgs args)
         {
-            if (setAdaptive && consumer != null)
+            if (setAdaptive && arrLamp.Count != 0)
             {
                 uint LIGHT_CUTOFF = 400;
                 LightSensorReading reading = args.Reading;
                 if (reading.IlluminanceInLux > LIGHT_CUTOFF)
                 {
-                    await consumer.SetBrightnessAsync(0);
+                    foreach (LampStateConsumer s in arrLamp)
+                    {
+                        await s.SetBrightnessAsync(0);
+                    }
+                        
                 }
                 else
                 {
@@ -234,9 +250,18 @@ namespace LampModule3
                     // Round the value to the next highest integer (precision loss is negligible when working
                     // on the order of 4 billion
                     uint rounded_value = (uint)Math.Ceiling(illum_value * uint.MaxValue);
-                    await consumer.SetBrightnessAsync(rounded_value);
-                }
+                    foreach (LampStateConsumer s in arrLamp)
+                    {
+                        await s.SetBrightnessAsync(rounded_value);
+                        }
+                    }
+                        
             }
+        }
+
+        public int devicesAttached()
+        {
+            return arrLamp.Count;
         }
     }
 }

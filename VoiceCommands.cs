@@ -60,17 +60,10 @@ namespace LampModule3
             lampHelper.SetOnOffAsync(onStateChangeRequested);
         }
 
-<<<<<<< HEAD
-        private async static void LampHelper_LampFound_color(object sender, EventArgs e)
-        {
-            LampHelper lampHelper = sender as LampHelper;
-            await lampHelper.SetHueAsync((uint) color_value);
-=======
         private static async void LampHelper_LampFound_color(object sender, EventArgs e)
         {
             LampHelper lampHelper = sender as LampHelper;
             await lampHelper.SetHueAsync(color_value);
->>>>>>> 2b4090e4b2fae19ab3cf0dc165573dc4351feec7
         }
     }
 }
